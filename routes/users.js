@@ -39,6 +39,7 @@ router.post('/',upload.any(),
 ],
 usersController.crear); 
 
-router.post('/login', usersController.login)
+router.post('/login', 
+usersController.login)
 
 module.exports=router;

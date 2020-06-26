@@ -38,6 +38,9 @@ else {return res.render('index',{errors:errors.errors})}
 },
 
 login:function(req,res,next){
+  let errors = validationResult(req);
+
+  if (errors.isEmpty()){
 
   let archivoUsuarios = fs.readFileSync(usersController.archivo, {encoding:'utf-8'});
   let usuarios;
@@ -53,9 +56,21 @@ login:function(req,res,next){
    
     res.send('te encontre')
 
- }
- }
- res.send('Error, email o contraseña inválida')
+ }else{
+ 
+   
+  return res.render('index',{errors:[{msg:'Credenciales inválidas'}]})
+}
+
+}
+
+}else{
+
+ return res.render('index',{errores:errores.errors})
+}
+
+
+
 }
 }
 module.exports=usersController;
@@ -66,3 +81,9 @@ module.exports=usersController;
 
 
 
+
+ 
+ 
+ 
+ 
+ 
